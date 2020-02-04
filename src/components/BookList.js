@@ -9,21 +9,27 @@ const BookList = () => {
     const { books } = useContext(BookContext)
     const theme = isLightTheme ? light : dark
     
-    return books.length ? (
-	    <div className="book-list" style={{ background: theme.bg, color: theme.syntax }}>
-	        <ul>
-	        	{
-	        		books.map(book => (
-	        			//<li style={ { background: theme.ui } }  key={ book.id }>{ book.title }</li>
-	        			<BookDetails style={ { background: theme.ui } } book={book} key={ book.id } />
-	        		))
-	        	}
-	        </ul>
-	        <BookForm/>
-	    </div>
-    ) : (
-    	<div className="empty" style={{ background: theme.bg, color: theme.syntax }} >No books to read</div>
-    )
+    return <React.Fragment>
+	    {
+	    	books.length ? 
+		    (
+			    <div className="book-list" style={{ background: theme.bg, color: theme.syntax }}>
+			        <ul>
+			        	{
+			        		books.map(book => (
+			        			//<li style={ { background: theme.ui } }  key={ book.id }>{ book.title }</li>
+			        			<BookDetails style={ { background: theme.ui } } book={book} key={ book.id } />
+			        		))
+			        	}
+			        </ul>
+			        
+			    </div>
+		    ) : (
+		    	<div className="empty" style={{ background: theme.bg, color: theme.syntax }} >No books to read</div>
+		    )
+	    }
+	    <BookForm/>
+    </React.Fragment>
 
 }
 

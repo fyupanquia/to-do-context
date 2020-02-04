@@ -5,7 +5,7 @@ import { BookContext } from '../contexts/BookContext'
 
 const NewBoookForm = () => {
 	const { isLightTheme, light, dark } = useContext(ThemeContext)
-	const {addBook} = useContext(BookContext);
+	const { dispatch } = useContext(BookContext);
 	const [title, setTitle] = useState('');
 	const [author, setAuthor] = useState('');
 	const theme = isLightTheme ? light : dark
@@ -25,7 +25,10 @@ const NewBoookForm = () => {
 
 	const  handleDefault = (e) => {
 		e.preventDefault();
-		addBook({title,author});
+		dispatch({ 
+				type: 'ADD_BOOK',
+				book: { title,author} 
+			});
 		setTitle("")
 		setAuthor("")
 	}
